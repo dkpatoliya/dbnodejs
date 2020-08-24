@@ -1,0 +1,21 @@
+{
+  "name": "nodex",
+  "version": "1.0.0",
+  "description": "node.js connect with postgre knox",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "knex",
+    "nodejs",
+    "postgreSQL"
+  ],
+  "author": "Divyesh",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.1",
+    "knex": "^0.21.5",
+    "pg": "^8.3.2"
+  }
+}
