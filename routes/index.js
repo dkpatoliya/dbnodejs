@@ -3,32 +3,43 @@ const router = express.Router();
 const knex = require('../db/knex');
 
 
-const getData = async (req,res)=>{
+// show Product data
+const showProduct = async (req,res)=>{
     const productData = await knex('public.product').select('*')
     console.log(productData);
-    res.send(productData)
+    res.send(productData);
 }
 
-// INSERT INTO public.product(
-// 	id, product_name, created_at, modified_at)
-// 	VALUES (?, ?, ?, ?);
+// insert Product data
+const insertProduct = async (req,res,next) =>{
 
-const insertData = async (req,res) =>{
-    const output = await knex('public.product').insert({product_name: 'test_product_1'})
-    console.log(op);
-    res.end('Data Inserted'+output.join());
+    const input = {
+            product_name: req.body.product_name,
+        }
+
+    console.log(input);
+    const output = await knex('public.product').insert(input)
+    console.log(output);
 }
 
-const delData = async(req,res)=>{
-    const id=8;
+// delet Product Data
+const delProduct = async(req,res)=>{
+    const id =req.body.id;
     const output=await knex('public.product').del().where('id', id)
-    res.end(output)
+    res.end(output);
 }
-    
 
-router.get('/v',insertData);
-router.get('/test',getData);
-router.get('/del/',delData);
+router.get('/show_roduct',showProduct);
+router.post('/insert_product',insertProduct);
+router.delete('/del_Product',delProduct);
+
+router.get('/hello',(req,res)=>{
+    console.log('Hello console')
+})
+
+
+
+
 
 
 
